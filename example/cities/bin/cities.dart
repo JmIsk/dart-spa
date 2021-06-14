@@ -3,8 +3,7 @@ import 'package:timezone/standalone.dart';
 import 'package:timezone/timezone.dart';
 
 void printCity(
-  String name, String timezone, double latitude, double longitude
-) {
+    String name, String timezone, double latitude, double longitude) {
   var location = getLocation(timezone);
   var time = TZDateTime.now(location);
 
@@ -15,23 +14,22 @@ void printCity(
   ));
 
   String fmtHHMM(int hours, int mins) =>
-    '${hours.toString().padLeft(2)}:${mins.toString().padLeft(2, '0')}';
+      '${hours.toString().padLeft(2)}:${mins.toString().padLeft(2, '0')}';
 
-  String fmtDeg(double deg) =>
-    '${deg.toStringAsFixed(2).padLeft(6)}°';
+  String fmtDeg(double deg) => '${deg.toStringAsFixed(2).padLeft(6)}°';
 
-  print(
-    '${name.padRight(13)} | '
-    '${fmtHHMM(time.hour, time.minute)} | '
-    'Zenith: ${fmtDeg(sp.zenith)} | '
-    'Sunrise: ${fmtHHMM(sp.sunrise!.floor(), (sp.sunrise! * 60).floor() % 60)} | '
-    'Transit: ${fmtHHMM(sp.sunTransit!.floor(), (sp.sunset! * 60).floor() % 60)} | '
-    'Sunset: ${fmtHHMM(sp.sunset!.floor(), (sp.sunset! * 60).floor() % 60)}'
-  );
+  print('${name.padRight(13)} | '
+      '${fmtHHMM(time.hour, time.minute)} | '
+      'Zenith: ${fmtDeg(sp.zenith)} | '
+      'Sunrise: ${fmtHHMM(sp.sunrise!.floor(), (sp.sunrise! * 60).floor() % 60)} | '
+      'Transit: ${fmtHHMM(sp.sunTransit!.floor(), (sp.sunset! * 60).floor() % 60)} | '
+      'Sunset: ${fmtHHMM(sp.sunset!.floor(), (sp.sunset! * 60).floor() % 60)}');
 }
 
 void main() async {
   await initializeTimeZone();
+
+  print('modificationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
 
   printCity('Anchorage', 'America/Anchorage', 61.2181, -149.9003);
   printCity('Mountain View', 'America/Los_Angeles', 37.3861, -122.0839);
